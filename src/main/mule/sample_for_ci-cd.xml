@@ -10,7 +10,7 @@ http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/
 	</http:listener-config>
 	<flow name="sample_for_ci-cdFlow" doc:id="57a1c5b0-2638-435c-a08a-16f66a168d24" >
 		<http:listener doc:name="Listener" doc:id="8b5ff220-55d7-4a22-99c9-7a374a5a2fa2" config-ref="HTTP_Listener_config" path="/cicd"/>
-		<set-payload value='1 St deployment by ' doc:name="Set Payload" doc:id="6dcd8717-79ca-46dc-adb3-ab4d6c4e25e5" />
+		<set-payload value='2nd deployment by ' doc:name="Set Payload" doc:id="6dcd8717-79ca-46dc-adb3-ab4d6c4e25e5" />
 		<ee:transform doc:name="Transform Message" doc:id="9439c36d-47ac-4e38-b076-65459d4e44e9" >
 			<ee:message >
 				<ee:set-payload ><![CDATA[%dw 2.0
