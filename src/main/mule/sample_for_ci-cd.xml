@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="7f67cf8b-45ea-4c79-8d3d-890e7398a2b7" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="sample_for_ci-cdFlow" doc:id="57a1c5b0-2638-435c-a08a-16f66a168d24" >
+		<http:listener doc:name="Listener" doc:id="8b5ff220-55d7-4a22-99c9-7a374a5a2fa2" config-ref="HTTP_Listener_config" path="/cicd"/>
+		<set-payload value='1 St deployment by ' doc:name="Set Payload" doc:id="6dcd8717-79ca-46dc-adb3-ab4d6c4e25e5" />
+		<ee:transform doc:name="Transform Message" doc:id="9439c36d-47ac-4e38-b076-65459d4e44e9" >
+			<ee:message >
+				<ee:set-payload ><![CDATA[%dw 2.0
+output application/json
+---
+payload ++ "karthi"]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+	</flow>
+</mule>
